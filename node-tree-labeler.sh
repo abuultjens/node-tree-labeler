@@ -2,11 +2,11 @@
 
 INFILE_TREE=${1}
 NODE_FOFN=${2}
-OUTFILE_TREE=${3}
+DB=${3}
+OUTFILE=${4}
 
-####################################################################
 
-START=`head -1 $1`
+START=`head -1 ${NODE_FOFN}`
 
 for TAXA in $(cat ${NODE_FOFN}); do
 
@@ -16,11 +16,11 @@ for TAXA in $(cat ${NODE_FOFN}); do
         RAND_3=`echo $((200 + RANDOM % 300))`
         RAND=`echo "${RAND_1}${RAND_2}${RAND_3}"`
 
-	BASE=`grep ^"${TAXA}," ${INFILE_TREE} | cut -f 2 -d ','`
+	BASE=`grep ^"${TAXA}," ${DB} | cut -f 2 -d ','`
 
 	if [ "${TAXA}" == "${START}" ]; then	
 		echo "replaced ${TAXA} with ${BASE}"
-		sed "s/${TAXA}\[/${BASE}\[/g" < node_labelled_nexus.tre > ${RAND}_TMP.nwk
+		sed "s/${TAXA}\[/${BASE}\[/g" < ${INFILE_TREE} > ${RAND}_TMP.nwk
 	else
 		echo "replaced ${TAXA} with ${BASE}"
 		sed "s/${TAXA}\[/${BASE}\[/g" < ${OLD_RAND}_TMP.nwk > ${RAND}_TMP.nwk
@@ -30,7 +30,7 @@ for TAXA in $(cat ${NODE_FOFN}); do
 	
 done
 
-echo "wrote outfile as ${OUTFILE_TREE}"
-mv ${RAND}_TMP.nwk ${OUTFILE_TREE}
+echo "wrote outfile as ${OUTFILE}"
+mv ${RAND}_TMP.nwk ${OUTFILE}
 
 rm *_TMP.nwk
