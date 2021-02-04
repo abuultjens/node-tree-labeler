@@ -1,5 +1,8 @@
 # node-tree-labeler
 Replaces model labels in nexus tree with ancestral state reconstructed bases for visulaisation in FigTree
 
-### run
-    $ sh node-tree-labeler.sh tree.nexus.tre NODES_fofn.txt ASR_tree_site-1.nexus.tre
+### Run
+    $ sh node-tree-labeler.sh node_labelled_nexus.tre node_sequences.fasta SNP_table.csv SITE
+    
+### Example
+    $ sh node-tree-labeler.sh node_labelled_nexus.tre node_sequences.fasta 44-ST203_snippy_4.6.0_aus0085_sub-352000_SNPs.csv 192176
