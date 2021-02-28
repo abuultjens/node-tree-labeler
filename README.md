@@ -1,5 +1,5 @@
 # node-tree-labeler
-Replaces node labels in nexus tree with ancestral state reconstructed bases and generates attributes file for visulaisation of homoplasic SNPs in FigTree
+Replaces node labels in nexus tree with ancestral state reconstructed bases from SNPPar (https://github.com/d-j-e/SNPPar) and generates attributes file for visulaisation in FigTree.
 
 ### Run
     $ sh node-tree-labeler/node-tree-labeler.sh node_labelled_nexus.tre node_sequences.fasta SNP_table.csv SITE
